@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+
+/* 定义 CSS 变量 */
+:root {
+  --bg-dark-primary: #1B2023;
+  --text-dark-primary: #E6E8E6;
+
+  --font-family: 'Roboto' ,'Noto_Sans_SC';
+  --text-font-size: 16.8px;
+  /* --text-font-size: 16.8px; */
+}
+
+body {
+  @apply
+    bg-(--bg-dark-primary)
+    text-(--text-dark-primary)/95
+
+    font-['Noto_Sans_SC']
+    text-(length:--text-font-size)
+    /* font-[380] */
+    font-[345]
+    tracking-[0.03em]
+
+    overflow-y-scroll
+}
+
+h1 {
+    @apply
+     text-5xl
+     font-semibold
+
+     mb-18
+}
+
+details::details-content {
+    @apply
+    /* transition-[height_8s,opacity_15s] */
+    /* [transition: height 1s]
+    [transition: opacity 1s] */
+    transition-[max-height,opacity]
+    /* h-0 */
+    max-h-0
+    ease-[cubic-bezier(.81,.32,.38,.97)]
+    opacity-0
+    duration-300
+
+    z-auto
+}
+
+details[open]::details-content {
+    @apply
+
+    overflow-hidden
+
+    transition-[max-height,opacity]
+    opacity-100
+    /* h-auto */
+    max-h-10000
+    /* h-[500px] */
+
+    z-auto
+}
+
+
+h2 {
+    @apply
+    col-span-1
+    justify-self-start
+}
+
+.h2-section>svg {
+    @apply
+    text-white/75
+
+    col-span-1
+    justify-self-end
+    mr-0.25
+}
+
+.h2-button>svg:hover {
+    @apply
+    text-white
+    /* text-[#6FC3F2] */
+}
+
+details>*:last-child{
+    @apply
+    pb-14
+    mb-0
+}
+
+.h2-section {
+    @apply
+    bg-(--bg-dark-primary)
+
+    text-3xl
+    font-bold
+
+    pt-4
+    /* mb-6 */
+    
+    sticky
+    top-0
+
+    grid
+    grid-cols-2
+    items-baseline
+
+    list-none
+
+    transition-[opacity]
+    opacity-100
+    duration-100
+
+    z-auto
+}
+
+.h2-section:hover {
+    @apply
+    opacity-60
+}
+
+
+/* .h2-button {
+    @apply
+    w-[100%]
+
+    grid
+    grid-cols-2
+    items-baseline
+
+} */
+
+.h2-section>hr {
+    @apply
+     text-black/40
+
+     border-[1.3px]
+     max-w-[100%]
+     mt-4
+     shadow-2xl
+
+     col-span-2
+}
+
+h3 {
+    @apply
+     text-2xl
+     font-semibold
+     
+     mt-12
+     mb-4
+
+}
+
+h1,h2,h3,h4,h5,h6 {
+    @apply
+     text-white
+}
+
+p {
+    @apply
+     leading-relaxed
+     /* tracking-wider */
+     my-6
+}
+
+li p {
+    @apply
+     
+    m-2.5
+}
+
+ul {
+    @apply
+     list-disc
+     pl-6
+     my-6
+}
+
+li {
+    @apply
+     m-2.5
+}
+
+ol {
+    @apply
+     list-decimal
+     pl-6
+     mb-6
+}
+
+code {
+    @apply
+     bg-[#4A5C6C]/40
+     text-[length:0.8em]
+
+     /* text-[calc(var(--text-font-size)*0.8)] */
+     tracking-[0.025em]
+      
+     p-1
+     mx-0.5
+     /* border-[1px]  */
+     rounded-sm
+     shadow-2xl
+}
+
+strong,em {
+    @apply
+     text-white
+      font-medium
+}
+
+em {
+    @apply
+     mx-0.25
+}
+
+p img{
+    @apply  
+      my-14
+      max-w-[95%]
+      shadow-xl
+      rounded
+
+      justify-self-center
+}
+
+a {
+    @apply
+     text-[#6FC3F2]
+
+     font-medium
+
+     px-0.5
+     /* mx-0.25 */
+
+     /* relative */
+     inline-block
+     transition-all
+     duration-150
+}
+
+a:hover {
+    @apply
+     bg-[#013A57]
+     text-white
+     
+     rounded-sm
+     shadow-2xl
+     /* -translate-x-0.25 */
+     /* -translate-y-0.25 */
+}
+
+.warning>p {
+    @apply
+    /* bg-[#1B0A0D] */
+    bg-[#B52E2A]/20
+
+    text-[calc(var(--text-font-size)*0.9)]
+    /* text-(length:--text-font-size) */
+
+    p-4
+    my-4
+    max-w-[99.5%]
+    rounded-xl
+}
+
+.content {
+    @apply
+    hidden
+}
