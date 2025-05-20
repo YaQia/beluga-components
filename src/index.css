@@ -31,19 +31,21 @@ h1 {
     mb-18;
 }
 
-details > .details-content {
-  @apply transition-[max-height]
+details + div {
+  @apply transition-[max-height,opacity]
     max-h-0
     ease-out
+    opacity-0
     overflow-hidden
     duration-300;
 }
 
-/* details[open] > .details-content { */
-/*   @apply transition-[max-height,opacity] */
-/*     ease-in */
-/*     opacity-100; */
-/* } */
+details[open] + div {
+  @apply transition-[max-height,opacity]
+    ease-in
+    max-h-fit
+    opacity-100;
+}
 
 h2 {
   @apply col-span-1
