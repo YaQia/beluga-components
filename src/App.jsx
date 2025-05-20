@@ -14,20 +14,20 @@ function App() {
   //   else changeOpenSet(openSet.add(event.target.id));
   // }
 
-  // function toggleCollapse() {
-  //   let content = this.nextElementSibling;
-  //   if (content.style.maxHeight) {
-  //     content.style.maxHeight = null;
-  //   } else {
-  //     content.style.maxHeight = content.scrollHeight + "px";
-  //   }
-  // }
+  function toggleCollapse() {
+    let content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  }
 
   return (
     // <div class="mx-auto mt-[120px] w-[62%] max-w-[750px] px-10 ">
     <div class="mx-auto pt-[160px] max-w-[756px] px-10 pb-[calc(30vh-8px)]">
       <h1>实验三：调试</h1>
-      <details id="details-1">
+      <details id="details-1" onClick={toggleCollapse}>
         <summary class="h2-section">
           <h2>介绍</h2>
 
@@ -76,7 +76,7 @@ function App() {
         </p>
       </div>
 
-      <details id="details-2">
+      <details id="details-2" onClick={toggleCollapse}>
         <summary class="h2-section">
           <h2>调试</h2>
           <svg
