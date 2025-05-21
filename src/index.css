@@ -31,8 +31,15 @@ h1 {
     mb-18;
 }
 
+details[open] {
+  @apply z-10
+  top-0
+  sticky;
+}
+
 details + div {
-  @apply transition-[max-height]
+  @apply transition-[max-height,top]
+    relative
     max-h-0
     ease-out
     overflow-hidden

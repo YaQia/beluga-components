@@ -2,22 +2,22 @@ import { createEffect, onMount } from "solid-js";
 import { createStore } from "solid-js/store";
 
 function App() {
-  // const [openSet, changeOpenSet] = createStore(new Set());
-  //
-  // createEffect(() => {
-  //   console.log("count changed:", openSet);
-  // });
-
-  // function toggleStateManager(event) {
-  //   if (event.target.id in openSet)
-  //     changeOpenSet(openSet.delete(event.target.id));
-  //   else changeOpenSet(openSet.add(event.target.id));
-  // }
-
-  function toggleCollapse() {
-    let content = this.nextElementSibling;
+  function toggleCollapse(e) {
+    const summary = e.currentTarget;
+    const content = summary.nextElementSibling;
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
+      setTimeout(() => {
+        const nextContent = summary.closest("details")?.nextElementSibling;
+        if (nextContent) {
+          const stickyHeaderHeight = summary.offsetHeight;
+          const topOfNext = nextContent.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: topOfNext - stickyHeaderHeight,
+            behavior: "smooth",
+          });
+        }
+      }, 50);
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
     }
