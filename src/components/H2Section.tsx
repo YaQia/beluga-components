@@ -7,26 +7,28 @@ export default function H2Section(props: {
   const [open, setOpen] = createSignal(false);
   function toggleCollapse(e: any) {
     const head = e.currentTarget;
+    if (head === null) return;
     const content = head.nextElementSibling;
+    if (content === null) return;
 
-    setOpen(!open());
     if (content.style.maxHeight) {
-      content.style.maxHeight = null;
       if (content) {
-        const sticky_header_height = head.offsetHeight;
         const content_top = content.getBoundingClientRect().top;
         if (content_top > 0) {
+          content.style.maxHeight = "";
+          setOpen((o) => !o);
           return;
         }
-        const top_of_head = content_top + window.scrollY;
-        window.scrollTo({
-          top: top_of_head - sticky_header_height,
-          behavior: "instant",
-        });
+        const sticky_header_height = head.offsetHeight;
+        const top_of_head = content_top + window.scrollY - sticky_header_height;
+
+        window.scroll(window.scrollX, top_of_head);
       }
+      content.style.maxHeight = "";
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
     }
+    setOpen((o) => !o);
   }
 
   return (
@@ -52,8 +54,8 @@ export default function H2Section(props: {
         <div
           class={
             open()
-              ? "transition-[opacity] duration-200 opacity-100 ease-in"
-              : "transition-[opacity] relative max-h-0 opacity-0 ease-out overflow-hidden duration-200"
+              ? "transition-[max-height] duration-200 overflow-hidden ease-out"
+              : "transition-[max-height] duration-200 overflow-hidden max-h-0"
           }
         >
           {props.children}

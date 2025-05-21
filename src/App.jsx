@@ -1,11 +1,9 @@
-import { createEffect, createSignal, onMount } from "solid-js";
-import { createStore } from "solid-js/store";
 import H2Section from "./components/H2Section";
 
 function App() {
   return (
     // <div class="mx-auto mt-[120px] w-[62%] max-w-[750px] px-10 ">
-    <div class="mx-auto pt-[160px] max-w-[756px] px-10 pb-[calc(50vh-8px)]">
+    <div class="mx-auto pt-[160px] max-w-[756px] px-10 pb-[calc(30vh-8px)]">
       <h1>实验三：调试</h1>
       <H2Section heading={<h2>介绍</h2>}>
         <p>
