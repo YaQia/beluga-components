@@ -6,24 +6,21 @@ export default function H2Section(props: {
 }) {
   const [open, setOpen] = createSignal(false);
   function toggleCollapse(e: any) {
-    const head = e.currentTarget;
-    if (head === null) return;
-    const content = head.nextElementSibling;
-    if (content === null) return;
+    const head = e.currentTarget as HTMLElement;
+    const content = head.nextElementSibling as HTMLElement;
+    if (!content) return;
 
     if (content.style.maxHeight) {
-      if (content) {
-        const content_top = content.getBoundingClientRect().top;
-        if (content_top > 0) {
-          content.style.maxHeight = "";
-          setOpen((o) => !o);
-          return;
-        }
-        const sticky_header_height = head.offsetHeight;
-        const top_of_head = content_top + window.scrollY - sticky_header_height;
-
-        window.scroll(window.scrollX, top_of_head);
+      const content_top = content.getBoundingClientRect().top;
+      if (content_top > 0) {
+        content.style.maxHeight = "";
+        setOpen((o) => !o);
+        return;
       }
+      const sticky_header_height = head.offsetHeight;
+      const top_of_head = content_top + window.scrollY - sticky_header_height;
+
+      window.scroll(window.scrollX, top_of_head);
       content.style.maxHeight = "";
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
