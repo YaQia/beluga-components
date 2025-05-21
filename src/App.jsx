@@ -1,52 +1,13 @@
-import { createEffect, onMount } from "solid-js";
+import { createEffect, createSignal, onMount } from "solid-js";
 import { createStore } from "solid-js/store";
+import H2Section from "./components/H2Section";
 
 function App() {
-  function toggleCollapse(e) {
-    const details = e.currentTarget;
-    const content = details.nextElementSibling;
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-      setTimeout(() => {
-        if (content) {
-          const stickyHeaderHeight = details.offsetHeight;
-          const topOfNext = content.getBoundingClientRect().top + window.scrollY;
-          console.log(details.offsetHeight, content.getBoundingClientRect().top, window.scrollY);
-          window.scrollTo({
-            top: topOfNext - stickyHeaderHeight,
-            behavior: "smooth",
-          });
-        }
-      }, 0);
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
-  }
-
   return (
     // <div class="mx-auto mt-[120px] w-[62%] max-w-[750px] px-10 ">
-    <div class="mx-auto pt-[160px] max-w-[756px] px-10 pb-[calc(30vh-8px)]">
+    <div class="mx-auto pt-[160px] max-w-[756px] px-10 pb-[calc(50vh-8px)]">
       <h1>实验三：调试</h1>
-      <details id="details-1" onClick={toggleCollapse}>
-        <summary class="h2-section">
-          <h2>介绍</h2>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="size-6"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <hr />
-        </summary>
-      </details>
-      <div>
+      <H2Section heading={<h2>介绍</h2>}>
         <p>
           这是上周调试的延续，参考<em>理解调试</em>
           。在本周的实验中，我们将使用上周用过的调试工具，并进行更多调试练习。今天实验的目标是进一步了解以下内容：
@@ -74,27 +35,9 @@ function App() {
         <p>
           和往常一样，如果您不确定某些内容的含义，尤其是不确定堆栈跟踪中出现的特定异常或错误的含义（我们将在今天的实验中介绍），请随时查找相关内容。这些提示旨在引导您的思考，但我们建议您在打开提示之前，先自己尝试完成实验。
         </p>
-      </div>
+      </H2Section>
 
-      <details id="details-2" onClick={toggleCollapse}>
-        <summary class="h2-section">
-          <h2>调试</h2>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="size-6"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <hr />
-        </summary>
-      </details>
-      <div>
+      <H2Section heading={<h2>调试</h2>}>
         <p>
           我们鼓励你通关每个完成的阶段，了解它们与游戏的关联。别忘了经常提交存档来保存你的进度！你需要进行如下步骤
         </p>
@@ -170,28 +113,9 @@ function App() {
             <span class="hljs-number">5</span>));
           </code>
         </pre>
-      </div>
+      </H2Section>
 
-      <details id="details-3" onClick={toggleCollapse}>
-        <summary class="h2-section">
-          <h2>测试</h2>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="size-6"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <hr />
-        </summary>
-      </details>
-      <div>
+      <H2Section heading={<h2>介绍</h2>}>
         <p>
           这是上周调试的延续，参考<em>理解调试</em>
           。在本周的实验中，我们将使用上周用过的调试工具，并进行更多调试练习。今天实验的目标是进一步了解以下内容：
@@ -219,7 +143,7 @@ function App() {
         <p>
           和往常一样，如果您不确定某些内容的含义，尤其是不确定堆栈跟踪中出现的特定异常或错误的含义（我们将在今天的实验中介绍），请随时查找相关内容。这些提示旨在引导您的思考，但我们建议您在打开提示之前，先自己尝试完成实验。
         </p>
-      </div>
+      </H2Section>
     </div>
   );
 }
