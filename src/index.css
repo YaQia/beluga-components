@@ -5,6 +5,7 @@
 /* 定义 CSS 变量 */
 :root {
   --bg-dark-primary: #1b2023;
+  --bg-dark-primary-opacity: rgba(27 32 35 / 0.8);
   --text-dark-primary: #e6e8e6;
 
   --font-family: "Roboto", "Noto_Sans_SC";
@@ -75,7 +76,7 @@ h2 {
 /* } */
 
 .h2-section {
-  @apply bg-(--bg-dark-primary)
+  @apply bg-(--bg-dark-primary) 
 
     text-3xl
     font-bold
@@ -100,7 +101,8 @@ h2 {
 }
 
 .h2-section:hover {
-  @apply opacity-60;
+  @apply bg-(--bg-dark-primary-opacity)
+  backdrop-blur-md;
 }
 
 /* .h2-button {
