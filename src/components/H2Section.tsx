@@ -50,9 +50,8 @@ export default function H2Section(props: {
         </button>
         <div
           class={
-            open()
-              ? "transition-[max-height] duration-200 overflow-hidden ease-out"
-              : "transition-[max-height] duration-200 overflow-hidden max-h-0"
+            "transition-[max-height] duration-200 overflow-hidden " +
+            (open() ? "ease-out" : "max-h-0")
           }
         >
           {props.children}
